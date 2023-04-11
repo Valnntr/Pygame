@@ -1,0 +1,68 @@
+#Task: Make 2 blocks that will display a question and an answer.
+
+#modules
+
+import pygame
+pygame.init()
+
+#variables
+
+WIDTH = 500
+HEIGHT = 500
+BG_COL = (255,182,193)
+BLACK = (0,0,0)
+CARD_COL = (255,255,255)
+FPS = 40
+
+
+#window setup
+
+main_win = pygame.display.set_mode((WIDTH, HEIGHT))
+main_win.fill(BG_COL)
+clock = pygame.time.Clock()
+
+
+#classes
+
+class TextRect():
+    #constructor
+    def __init__(self, x_pos=0, y_pos=0, width=10, heigh=10, fill_col=None):
+        self.rect = pygame.Rect(x_pos, y_pos, width, heigh)
+        self.fill_col = fill_col
+
+    def set_text (self, text, f_size=12, text_col=BLACK):
+        self.text = text
+        self.text_image = pygame.font.Font(None, f_size).render(text, True, text_col)
+
+    def draw_text(self, shift_x=0, shift_y=0):
+        pygame.draw.rect(main_win, self.fill_col, self.rect)
+        main_win.blit(self.text_image, (self.rect.x + shift_x, self.rect.y + shift_y))
+
+
+#objects
+
+quest_card = TextRect(120, 100, 290, 70, CARD_COL)
+quest_card.set_text("Question", 75)
+ans_card = TextRect(120, 240, 290, 70, CARD_COL)
+ans_card.set_text('Answer', 75)
+
+
+#game loop
+
+quest_card.draw_text(10, 10)
+ans_card.draw_text(10, 10)
+
+while True:
+    pygame.display.update()
+
+    clock.tick(FPS)
+
+
+
+
+
+
+
+
+
+
