@@ -1,0 +1,14 @@
+#Task: print out a list of games. But when 0 is entered, list of games is displayed. 
+#When a game that has already been listed gets inputted, display "This game is already recorded"
+
+games = []
+game = input('Enter game (0 - stop entering)').lower()
+while game != "0":
+    if game in games:
+        print("This game is already recorded")
+    else:
+        games.append(game)
+        games.sort()
+    game = input('Enter game (0 - stop entering)').lower()
+print(f"List of games: {games}")
+
